@@ -26,5 +26,3 @@ TODO LIST:
 - add ability to turn off and on customer shaders during render pipline
 - make fun demos
 - ask to get listed on learningwebgl.com
-- add some functions to simplify drawing colored rectangles
-- add some functions to more easily draw images for people who don't like math
