@@ -56,7 +56,7 @@ void main(void) {
 		engine.reset();
 		engine.setTint((5+Math.sin(i/3)*50)/100.0,(50+Math.sin(i/25)*50)/100.0,(50+Math.sin(i/50)*50)/100.0);
 		engine.setAlpha((50+Math.sin(i/10)*50)/100.0);
-		engine.move(engine.gl.viewportWidth/2.0-75, engine.gl.viewportHeight/2.0-75);
+		engine.move(engine.width()/2.0-75, engine.height()/2.0-75);
 		engine.move(75,75);
 		engine.rotate(45+i);
 		engine.move(-75.0, -75.0);

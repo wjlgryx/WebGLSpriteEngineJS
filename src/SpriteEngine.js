@@ -113,3 +113,10 @@ SpriteEngine.prototype.setView = function(x, y, width, height) {
     this.gl.viewport(0, 0, this.gl.viewportWidth, this.gl.viewportHeight);
     this.ortho(this.gl.viewportWidth,this.gl.viewportHeight);
 }
+
+SpriteEngine.prototype.height = function() {
+    return this.gl.viewportHeight;
+}
+SpriteEngine.prototype.width = function() {
+    return this.gl.viewportWidth;
+}
