@@ -24,3 +24,5 @@ TODO LIST:
 - add a default pixel image that is injected at initialization
 - rename shaders to be more unique
 - add ability to turn off and on customer shaders during render pipline
+- make fun demos
+- ask to get listed on learningwebgl.com
