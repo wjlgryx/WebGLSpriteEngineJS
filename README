@@ -8,7 +8,7 @@ https://github.com/richardanaya/WebGLSpriteEngine/wiki/Tutorials
 
 
 COMPILING
-This is a simple sprite engine i've written in WebGL. To compile the javascript correctly, you'll need some dependencies:
+To compile the javascript library correctly, you'll need some dependencies:
 
 - BASH (sorry windows users)
 - Java
