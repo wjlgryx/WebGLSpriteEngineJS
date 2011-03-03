@@ -13,3 +13,4 @@ TODO LIST:
 - add support for font map rendering
 - add a default pixel image that is injected at initialization
 - rename shaders to be more unique
+- add ability to turn off and on customer shaders during render pipline
