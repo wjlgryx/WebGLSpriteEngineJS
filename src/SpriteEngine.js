@@ -109,7 +109,7 @@ SpriteEngine.prototype.clear = function(r,g,b) {
     	this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 }
 
-SpriteEngine.prototype.run = function() {
+SpriteEngine.prototype.setView = function(x, y, width, height) {
     this.gl.viewport(0, 0, this.gl.viewportWidth, this.gl.viewportHeight);
     this.ortho(this.gl.viewportWidth,this.gl.viewportHeight);
 }

@@ -20,9 +20,8 @@ Engine.prototype.initSettings = function() {
     this.gl.depthFunc(this.gl.LEQUAL);
 }
 
-Engine.prototype.start = function() {
-    var me = this;
-    setInterval(function() { me.run(); }, 1000/60.0);
+Engine.prototype.start = function(callback,fps) {
+    setInterval(callback, 1000/fps);
 }
 
 Engine.prototype.initGL = function(canvas) {
