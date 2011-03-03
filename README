@@ -10,11 +10,10 @@ https://github.com/richardanaya/WebGLSpriteEngine/wiki/Tutorials
 COMPILING
 To compile the javascript library correctly, you'll need some dependencies:
 
-- BASH (sorry windows users)
-- Java
-- Python
+- Java ( http://www.java.com/en/download/index.jsp )
+- Python ( http://www.python.org )
 
-Once you have these, just run ./setup.sh
+Once you have these, from commandline in the root directory run ./setup.sh (for osx/linux) or setup.bat (for windows)
 
 TESTING
 You can run a temporary server in any of the example directories by running ./run_server.sh
