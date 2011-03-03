@@ -1,4 +1,12 @@
-This is a simple sprite engine i've written in WebGL. If you'd like to run the examples, first run the shell script setup.sh
+This is a simple sprite engine i've written in WebGL. To compile the javascript correctly, you'll need some dependencies:
+
+- BASH (sorry windows users)
+- Java
+- Python
+
+Once you have these, just run ./setup.sh
+
+You can run a temporary server in any of the example directories by running ./run_server.sh
 
 TODO LIST:
 - find out a way to intuitively preload images and add hooks to monitor progress
