@@ -1,0 +1,25 @@
+{namespace shaders}
+
+/**
+ * Creates a vertex shader for the sprite engine 
+ */
+{template .create_vertex_shader}
+<script id="shader-vs" type="x-shader/x-vertex"> 
+attribute vec3 aVertexPosition;{\n}
+attribute vec4 aVertexColor;{\n}
+attribute vec2 aTextureCoord;{\n}
+
+uniform mat4 uMVMatrix;{\n}
+uniform mat4 uPMatrix;{\n}
+uniform vec4 vMulColor;{\n}
+{\n}
+varying vec4 vColor;{\n}
+varying vec2 vTextureCoord;{\n}
+{\n}
+void main(void) {lb}{\n}
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);{\n}
+	vColor = vMulColor*aVertexColor;{\n}
+	vTextureCoord = aTextureCoord;{\n}
+{rb}
+</script>
+{/template}
