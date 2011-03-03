@@ -1,0 +1,50 @@
+<html>
+<head>
+	<script type="text/javascript" src="sylvester.js"></script> 
+	<script type="text/javascript" src="glutils.js"></script> 
+	<script type="text/javascript" src="Engine.js"></script>
+	<script type="text/javascript" src="SpriteEngine.js"></script>
+	<script type="text/javascript" src="MegaManExperiment.js"></script>
+	<script id="shader-vs" type="x-shader/x-vertex"> 
+attribute vec3 aVertexPosition;
+attribute vec4 aVertexColor;
+attribute vec2 aTextureCoord; 
+
+uniform mat4 uMVMatrix;
+uniform mat4 uPMatrix;
+uniform vec4 vMulColor;
+ 
+varying vec4 vColor;
+varying vec2 vTextureCoord;
+ 
+void main(void) {
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+	vColor = vMulColor*aVertexColor;
+	vTextureCoord = aTextureCoord;
+}
+	</script>
+	<script id="shader-fs" type="x-shader/x-fragment"> 
+#ifdef GL_ES
+precision highp float;
+#endif
+ 
+varying vec4 vColor;
+varying vec2 vTextureCoord;
+
+uniform sampler2D uSampler;
+ 
+void main(void) {
+	gl_FragColor = vColor*texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t)); 
+}
+	</script> 
+	
+</head>
+<body>
+<canvas id="content_screen" style="border: none;" width="800" height="600"></canvas>
+<script>
+	var engine = new MegaManExperiment();
+	engine.initialize('content_screen');
+	engine.start();
+</script>
+</body>
+</html>
