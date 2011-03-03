@@ -1,3 +1,11 @@
+If you just want to start programming:
+
+1) Download the compiled javascript library at https://github.com/downloads/richardanaya/WebGLSpriteEngine/SpriteEngine-min.js
+
+2) Go through the simple tutorials at https://github.com/richardanaya/WebGLSpriteEngine/wiki/Tutorials
+
+
+COMPILING
 This is a simple sprite engine i've written in WebGL. To compile the javascript correctly, you'll need some dependencies:
 
 - BASH (sorry windows users)
@@ -6,6 +14,7 @@ This is a simple sprite engine i've written in WebGL. To compile the javascript 
 
 Once you have these, just run ./setup.sh
 
+TESTING
 You can run a temporary server in any of the example directories by running ./run_server.sh
 
 TODO LIST:
