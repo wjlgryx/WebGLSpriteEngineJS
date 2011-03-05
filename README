@@ -19,6 +19,7 @@ TESTING
 You can run a temporary server in any of the example directories by running ./run_server.sh
 
 TODO LIST:
+- change shaders to allow for specifying UV
 - find out a way to intuitively preload images and add hooks to monitor progress
 - add support for font map rendering
 - add a default pixel image that is injected at initialization
