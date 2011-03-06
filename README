@@ -6,6 +6,8 @@ https://github.com/downloads/richardanaya/WebGLSpriteEngine/SpriteEngine-min.js
 2) Go through the simple tutorials at: 
 https://github.com/richardanaya/WebGLSpriteEngine/wiki/Tutorials
 
+3) Check out some working demos at:
+http://megasprite.nodester.com/index.html
 
 COMPILING
 To compile the javascript library correctly, you'll need some dependencies:
