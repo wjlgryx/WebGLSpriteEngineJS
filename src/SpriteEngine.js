@@ -29,18 +29,36 @@ SpriteEngine.prototype.initShaders = function() {
     this.shaderProgram.mvMatrixUniform = this.gl.getUniformLocation(this.shaderProgram, "uMVMatrix");
     this.shaderProgram.uSampler = this.gl.getUniformLocation(this.shaderProgram, "uSampler");
     this.shaderProgram.vMulColor = this.gl.getUniformLocation(this.shaderProgram, "vMulColor");
+    this.shaderProgram.startS = this.gl.getUniformLocation(this.shaderProgram, "startS");
+    this.shaderProgram.endS = this.gl.getUniformLocation(this.shaderProgram, "endS");
+    this.shaderProgram.startT = this.gl.getUniformLocation(this.shaderProgram, "startT");
+    this.shaderProgram.endT = this.gl.getUniformLocation(this.shaderProgram, "endT");
   }
-SpriteEngine.prototype.setMatrixUniforms = function() {
+SpriteEngine.prototype.setUniforms = function() {
     this.gl.uniformMatrix4fv(this.shaderProgram.pMatrixUniform, false, new Float32Array(this.pMatrix.flatten()));
     this.gl.uniformMatrix4fv(this.shaderProgram.mvMatrixUniform, false, new Float32Array(this.mvMatrix.flatten()));
     this.gl.uniform4fv(this.shaderProgram.vMulColor, new Float32Array(this.vMulColor));
   } 
 
-SpriteEngine.prototype.drawSprite = function(sprite) {
+SpriteEngine.prototype.drawSprite = function(sprite,src_x,src_y,src_width,src_height) {
     var positionBuffer = sprite[0];
     var colorBuffer = sprite[1];
     var textureCoordBuffer = sprite[2];
     var texture = sprite[3];
+    var w = texture.image.width;
+    var h = texture.image.height;
+    if( src_x == undefined ) {
+        src_x = 0;
+    }
+    if( src_width == undefined ) {
+        src_width = w;
+    }
+    if( src_y == undefined ) {
+        src_y = 0;
+    }
+    if( src_height == undefined ) {
+        src_height = h;
+    }
     this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
     this.gl.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute, positionBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
     this.gl.bindBuffer(this.gl.ARRAY_BUFFER, colorBuffer);
@@ -51,8 +69,14 @@ SpriteEngine.prototype.drawSprite = function(sprite) {
     this.gl.activeTexture(this.gl.TEXTURE0);
     this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
     this.gl.uniform1i(this.shaderProgram.samplerUniform, 0);
-    
-    this.setMatrixUniforms();
+   
+    this.setUniforms();
+
+    this.gl.uniform1f(this.shaderProgram.startS, src_x/w );
+    this.gl.uniform1f(this.shaderProgram.endS, src_width/w );
+    this.gl.uniform1f(this.shaderProgram.startT, (h-(src_y+src_height))/h );
+    this.gl.uniform1f(this.shaderProgram.endT, (src_height)/h );
+ 
     this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, positionBuffer.numItems);
 }
 

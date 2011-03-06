@@ -13,9 +13,15 @@ varying vec4 vColor;{\n}
 varying vec2 vTextureCoord;{\n}
 {\n}
 uniform sampler2D uSampler;{\n}
+uniform float startS;{\n}
+uniform float endS;{\n}
+uniform float startT;{\n}
+uniform float endT;{\n}
 {\n}
 void main(void) {lb}{\n}
-	gl_FragColor = vColor*texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));{\n}
+	float s = vTextureCoord.s*endS+startS;{\n}
+	float t = vTextureCoord.t*endT+startT;{\n}
+	gl_FragColor = vColor*texture2D(uSampler, vec2(s,t));{\n}
 {rb}
 </script> 
 {/template}

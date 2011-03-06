@@ -9,6 +9,7 @@ fileList = [
 	"soyutils.js",
 	"shader-vs.js",
 	"shader-fs.js",
+	"pixel.js",
 	"SpriteEngine.js",
 ]
 
