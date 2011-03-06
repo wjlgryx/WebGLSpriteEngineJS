@@ -138,7 +138,7 @@ SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,sc
 	engine.identity();
 	engine.rotate(angle);
 	engine.move(x-w/2, y-h/2);
-	engine.scale(w*scale_x,h*_scale_y);
+	engine.scale(w*scale_x,h*scale_y);
     	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
 }
 
