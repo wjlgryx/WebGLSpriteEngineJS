@@ -108,28 +108,38 @@ SpriteEngine.prototype.createSprite = function(width,height,spriteColor,url) {
     return [vertexPositionBuffer, vertexColorBuffer, textureCoordBuffer, this.loadTexture(url)];
 }
 
-SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y) {
+SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y,start_s,end_s,start_t,end_t) {
+	var w = sprite[3].image.width;
+	var h = sprite[3].image.height;
 	if( angle == undefined ) angle = 0;
 	if( scale_x == undefined ) scale_x = 1;
 	if( scale_y == undefined ) scale_y = 1;
+	if( start_s == undefined ) start_s = 0;
+	if( end_s == undefined ) end_s = w;
+	if( start_t == undefined ) start_t = 0;
+	if( end_t == undefined ) end_t = h;
 	engine.identity();
 	engine.rotate(angle);
 	engine.move(x, y);
 	engine.scale(sprite[3].image.width*scale_x,sprite[3].image.height*scale_y);
-    	engine.renderSprite(sprite);
+    	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
 }
 
-SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,scale_y) {
+SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,scale_y,start_s,end_s,start_t,end_t) {
+	var w = sprite[3].image.width;
+	var h = sprite[3].image.height;
 	if( angle == undefined ) angle = 0;
 	if( scale_x == undefined ) scale_x = 1;
 	if( scale_y == undefined ) scale_y = 1;
-	var w = sprite[3].image.width;
-	var h = sprite[3].image.height;
+	if( start_s == undefined ) start_s = 0;
+	if( end_s == undefined ) end_s = w;
+	if( start_t == undefined ) start_t = 0;
+	if( end_t == undefined ) end_t = h;
 	engine.identity();
 	engine.rotate(angle);
 	engine.move(x-w/2, y-h/2);
 	engine.scale(w*scale_x,h*_scale_y);
-    	engine.renderSprite(sprite);
+    	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
 }
 
 SpriteEngine.prototype.scale = function(x,y) {
