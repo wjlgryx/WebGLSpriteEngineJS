@@ -73,8 +73,7 @@ Engine.prototype.mvTranslate = function(v) {
   }
  
 Engine.prototype.mvRotate = function(ang, v) {
-    var arad = ang * Math.PI / 180.0;
-    var m = Matrix.Rotation(arad, $V([v[0], v[1], v[2]])).ensure4x4();
+    var m = Matrix.Rotation(Math.rad(ang), $V([v[0], v[1], v[2]])).ensure4x4();
     this.multMatrix(m);
 }
  

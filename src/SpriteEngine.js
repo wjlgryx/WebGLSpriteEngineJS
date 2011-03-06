@@ -142,18 +142,6 @@ SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,sc
     	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
 }
 
-SpriteEngine.prototype.deg = function(radians)
-{
-   degrees = 360 * radians/(2 * Math.PI);
-   return degrees;
-}
-
-SpriteEngine.prototype.rad = function(degrees)
-{
-   radians = (2 * Math.PI * degrees)/360;
-   return radians;
-}
-
 SpriteEngine.prototype.scale = function(x,y) {
 	this.mvScale([x,y,1,1]);
 }

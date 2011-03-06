@@ -3,6 +3,7 @@ import os
 import sys
 
 fileList = [
+	"extensions.js",
 	"sylvester.js",
 	"glutils.js",
 	"Engine.js",
