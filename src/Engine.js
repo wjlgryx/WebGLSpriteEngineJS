@@ -58,6 +58,14 @@ Engine.prototype.multMatrix = function(m) {
     this.mvMatrix = this.mvMatrix.x(m);
   }
  
+Engine.prototype.mvScale = function(v) {
+    var m = Matrix.I(4);
+    m.elements[0][0] = v[0];
+    m.elements[1][1] = v[1];
+    m.elements[2][2] = v[2];
+    m.elements[3][3] = v[3];
+    this.multMatrix(m);
+  }
  
 Engine.prototype.mvTranslate = function(v) {
     var m = Matrix.Translation($V([v[0], v[1], v[2]])).ensure4x4();

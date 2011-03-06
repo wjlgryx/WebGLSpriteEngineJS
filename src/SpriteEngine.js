@@ -82,9 +82,9 @@ SpriteEngine.prototype.drawSprite = function(sprite,src_x,src_y,src_width,src_he
 
 SpriteEngine.prototype.createSprite = function(width,height,spriteColor,url) {
     var vertices = [
-         width, height, 0.0,
-         0, height, 0.0,
-         width, 0, 0.0,
+         1, 1, 0.0,
+         0, 1, 0.0,
+         1, 0, 0.0,
          0, 0,  0.0
     ];
     var vertexPositionBuffer = this.createBuffer(vertices,3,4);
@@ -106,6 +106,10 @@ SpriteEngine.prototype.createSprite = function(width,height,spriteColor,url) {
     var textureCoordBuffer = this.createBuffer(coords,2,4);
     
     return [vertexPositionBuffer, vertexColorBuffer, textureCoordBuffer, this.loadTexture(url)];
+}
+
+SpriteEngine.prototype.scale = function(x,y) {
+	this.mvScale([x,y,1,1]);
 }
 
 SpriteEngine.prototype.move = function(x,y) {
