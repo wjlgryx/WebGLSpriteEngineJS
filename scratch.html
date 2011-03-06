@@ -1,0 +1,31 @@
+<html>
+<head>
+	<script type="text/javascript" src="src/sylvester.js"></script>
+	<script type="text/javascript" src="src/glutils.js"></script>
+	<script type="text/javascript" src="src/Engine.js"></script>
+	<script type="text/javascript" src="src/soyutils.js"></script>
+	<script type="text/javascript" src="src/shader-vs.js"></script>
+	<script type="text/javascript" src="src/shader-fs.js"></script>
+	<script type="text/javascript" src="src/SpriteEngine.js"></script>
+</head>
+<body>
+<canvas id="content_screen" style="border: none;" width="800" height="600"></canvas>
+<script>
+	//Setting up
+	var engine = new SpriteEngine();
+	engine.initialize('content_screen');
+
+	//Load texture
+	var megamanSprite = engine.createSprite(150,150,[1,1,1,1],"uvtemplate.jpg")
+
+	//Interesting stuff
+	render_loop = function() {
+		engine.setView();
+		engine.clear();
+		engine.drawSprite(megamanSprite,100,100,45);
+	}
+	
+	engine.start(render_loop,60);
+</script>
+</body>
+</html>

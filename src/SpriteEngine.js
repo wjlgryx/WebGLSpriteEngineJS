@@ -119,8 +119,8 @@ SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y,st
 	if( start_t == undefined ) start_t = 0;
 	if( end_t == undefined ) end_t = h;
 	engine.identity();
-	engine.rotate(angle);
 	engine.move(x, y);
+	engine.rotate(angle);
 	engine.scale(sprite[3].image.width*scale_x,sprite[3].image.height*scale_y);
     	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
 }
@@ -136,10 +136,22 @@ SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,sc
 	if( start_t == undefined ) start_t = 0;
 	if( end_t == undefined ) end_t = h;
 	engine.identity();
-	engine.rotate(angle);
 	engine.move(x-w/2, y-h/2);
+	engine.rotate(angle);
 	engine.scale(w*scale_x,h*scale_y);
     	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
+}
+
+SpriteEngine.prototype.deg = function(radians)
+{
+   degrees = 360 * radians/(2 * Math.PI);
+   return degrees;
+}
+
+SpriteEngine.prototype.rad = function(degrees)
+{
+   radians = (2 * Math.PI * degrees)/360;
+   return radians;
 }
 
 SpriteEngine.prototype.scale = function(x,y) {
