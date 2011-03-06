@@ -40,7 +40,7 @@ SpriteEngine.prototype.setUniforms = function() {
     this.gl.uniform4fv(this.shaderProgram.vMulColor, new Float32Array(this.vMulColor));
   } 
 
-SpriteEngine.prototype.drawSprite = function(sprite,src_x,src_y,src_width,src_height) {
+SpriteEngine.prototype.renderSprite = function(sprite,src_x,src_y,src_width,src_height) {
     var positionBuffer = sprite[0];
     var colorBuffer = sprite[1];
     var textureCoordBuffer = sprite[2];
@@ -108,6 +108,30 @@ SpriteEngine.prototype.createSprite = function(width,height,spriteColor,url) {
     return [vertexPositionBuffer, vertexColorBuffer, textureCoordBuffer, this.loadTexture(url)];
 }
 
+SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y) {
+	if( angle == undefined ) angle = 0;
+	if( scale_x == undefined ) scale_x = 1;
+	if( scale_y == undefined ) scale_y = 1;
+	engine.identity();
+	engine.rotate(angle);
+	engine.move(x, y);
+	engine.scale(sprite[3].image.width*scale_x,sprite[3].image.height*scale_y);
+    	engine.renderSprite(sprite);
+}
+
+SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,scale_y) {
+	if( angle == undefined ) angle = 0;
+	if( scale_x == undefined ) scale_x = 1;
+	if( scale_y == undefined ) scale_y = 1;
+	var w = sprite[3].image.width;
+	var h = sprite[3].image.height;
+	engine.identity();
+	engine.rotate(angle);
+	engine.move(x-w/2, y-h/2);
+	engine.scale(w*scale_x,h*_scale_y);
+    	engine.renderSprite(sprite);
+}
+
 SpriteEngine.prototype.scale = function(x,y) {
 	this.mvScale([x,y,1,1]);
 }
@@ -120,7 +144,7 @@ SpriteEngine.prototype.rotate = function(deg) {
 	this.mvRotate(deg,[0,0,1]);
 }
 
-SpriteEngine.prototype.reset = function() {
+SpriteEngine.prototype.identity = function() {
 	this.loadIdentity();
 }
 
