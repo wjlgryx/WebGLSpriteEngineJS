@@ -20,7 +20,6 @@ You can run a temporary server in any of the example directories by running ./ru
 
 TODO LIST:
 - find out a way to intuitively preload images and add hooks to monitor progress
-- add a default pixel image that is injected at initialization
 - rename shaders to be more unique
 - add ability to turn off and on customer shaders during render pipline
 - make fun demos
