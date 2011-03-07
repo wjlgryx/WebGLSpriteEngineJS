@@ -109,6 +109,8 @@ SpriteEngine.prototype.createSprite = function(width,height,url) {
 }
 
 SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y,start_s,end_s,start_t,end_t) {
+	var w = sprite[3].image.width;
+	var h = sprite[3].image.height;
 	if( angle == undefined ) angle = 0;
 	if( scale_x == undefined ) scale_x = 1;
 	if( scale_y == undefined ) scale_y = 1;
@@ -128,6 +130,8 @@ SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y,st
 }
 
 SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,scale_y,start_s,end_s,start_t,end_t) {
+	var w = sprite[3].image.width;
+	var h = sprite[3].image.height;
 	if( angle == undefined ) angle = 0;
 	if( scale_x == undefined ) scale_x = 1;
 	if( scale_y == undefined ) scale_y = 1;
