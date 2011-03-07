@@ -21,5 +21,6 @@ TESTING
 You can run a temporary server in any of the example directories by running ./run_server.sh
 
 TODO LIST:
+- change how creating textures works to take in preloaded images
 - add ability to turn off and on customer shaders during render pipline
 - ask to get listed on learningwebgl.com
