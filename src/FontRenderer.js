@@ -52,7 +52,7 @@ FontRenderer.prototype.getSprite = function(ctx,s) {
 		ctx.drawImage(this.font,sx,1,w,h,x,y,w,h);
 		x+=w;
 	}
-	return engine.createSprite(150,150,[1,1,1,1],canvas.toDataURL());
+	return engine.createSprite(canvas.width,canvas.height,canvas.toDataURL());
 }
 
 FontRenderer.prototype.renderCharacter = function(ctx,sx,sy,w,h,x,y) {
