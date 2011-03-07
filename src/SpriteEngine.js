@@ -18,7 +18,7 @@ SpriteEngine.prototype.initSettings = function() {
 SpriteEngine.prototype.initShaders = function() {
     document.head.innerHTML += shaders.create_fragment_shader();
     document.head.innerHTML += shaders.create_vertex_shader();
-    this.shaderProgram = this.createShaderProgram(["shader-fs","shader-vs"]);
+    this.shaderProgram = this.createShaderProgram(["sprite-shader-fs","sprite-shader-vs"]);
     this.gl.useProgram(this.shaderProgram);
  
     this.shaderProgram.vertexPositionAttribute = this.gl.getAttribLocation(this.shaderProgram, "aVertexPosition");
