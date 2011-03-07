@@ -10,6 +10,9 @@ SpriteEngine.prototype.initSettings = function() {
     Engine.prototype.initSettings.call(this);
     this.gl.enable(this.gl.BLEND);
     this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE);
+    this.f32pMatrix = new Float32Array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]);
+    this.f32mvMatrix = new Float32Array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]);
+    this.f32mMulColor = new Float32Array([1,1,1,1]);
 }
 
 SpriteEngine.prototype.initShaders = function() {
@@ -34,10 +37,23 @@ SpriteEngine.prototype.initShaders = function() {
     this.shaderProgram.startT = this.gl.getUniformLocation(this.shaderProgram, "startT");
     this.shaderProgram.endT = this.gl.getUniformLocation(this.shaderProgram, "endT");
   }
+
 SpriteEngine.prototype.setUniforms = function() {
-    this.gl.uniformMatrix4fv(this.shaderProgram.pMatrixUniform, false, new Float32Array(this.pMatrix.flatten()));
-    this.gl.uniformMatrix4fv(this.shaderProgram.mvMatrixUniform, false, new Float32Array(this.mvMatrix.flatten()));
-    this.gl.uniform4fv(this.shaderProgram.vMulColor, new Float32Array(this.vMulColor));
+    var pm = this.pMatrix.flatten();
+    for(var i=0;i<16;i++) {
+       this.f32pMatrix[i] = pm[i]; 
+    }
+    this.gl.uniformMatrix4fv(this.shaderProgram.pMatrixUniform, false, this.f32pMatrix );
+    var mvm = this.mvMatrix.flatten();
+    for(var i=0;i<16;i++) {
+       this.f32mvMatrix[i] = mvm[i]; 
+    }
+    this.gl.uniformMatrix4fv(this.shaderProgram.mvMatrixUniform, false, this.f32mvMatrix);
+    this.f32mMulColor[0] = this.vMulColor[0];
+    this.f32mMulColor[1] = this.vMulColor[1];
+    this.f32mMulColor[2] = this.vMulColor[2];
+    this.f32mMulColor[3] = this.vMulColor[3];
+    this.gl.uniform4fv(this.shaderProgram.vMulColor, this.f32mMulColor);
   } 
 
 SpriteEngine.prototype.renderSprite = function(sprite,src_x,src_y,src_width,src_height) {
