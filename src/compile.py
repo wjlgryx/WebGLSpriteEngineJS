@@ -11,6 +11,7 @@ fileList = [
 	"shader-vs.js",
 	"shader-fs.js",
 	"SpriteEngine.js",
+	"FontRenderer.js",
 ]
 
 print """
