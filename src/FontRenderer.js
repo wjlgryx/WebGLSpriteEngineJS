@@ -36,9 +36,29 @@ FontRenderer.prototype.drawText = function(ctx,s,x,y) {
 		x+=w;
 	}
 }
+FontRenderer.prototype.getSprite = function(ctx,s) {
+	var canvas = document.createElement('canvas');
+	var h = this.font.height-1; //account for data row
+	canvas.width =0;
+	canvas.height = h;
+	var ctx = canvas.getContext('2d');
+	var x=0;
+	var y=0;
+	for(var i = 0; i < s.length ; i++ ) {
+		var c = s.charCodeAt(i)-32;	
+		var sx = this.font_data[c*2];
+		var w = this.font_data[(c*2)+1]-sx;
+		canvas.width += w;
+		ctx.drawImage(this.font,sx,1,w,h,x,y,w,h);
+		x+=w;
+	}
+	return engine.createSprite(150,150,[1,1,1,1],canvas.toDataURL());
+}
 
 FontRenderer.prototype.renderCharacter = function(ctx,sx,sy,w,h,x,y) {
 	var sw = this.sprite[3].image.width;
 	var sh = this.sprite[3].image.height;
 	ctx.drawSprite(this.sprite,x,y,0,w/sw,h/sh,sx,w,sy,h);
 }
+
+

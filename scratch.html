@@ -1,5 +1,6 @@
 <html>
 <head>
+	<script type="text/javascript" src="src/extensions.js"></script>
 	<script type="text/javascript" src="src/sylvester.js"></script>
 	<script type="text/javascript" src="src/glutils.js"></script>
 	<script type="text/javascript" src="src/Engine.js"></script>
@@ -7,6 +8,9 @@
 	<script type="text/javascript" src="src/shader-vs.js"></script>
 	<script type="text/javascript" src="src/shader-fs.js"></script>
 	<script type="text/javascript" src="src/SpriteEngine.js"></script>
+	<script type="text/javascript" src="src/base64.js"></script>
+	<script type="text/javascript" src="src/canvas2image.js"></script>
+	<script type="text/javascript" src="src/FontRenderer.js"></script>
 </head>
 <body>
 <canvas id="content_screen" style="border: none;" width="800" height="600"></canvas>
@@ -16,13 +20,22 @@
 	engine.initialize('content_screen');
 
 	//Load texture
-	var megamanSprite = engine.createSprite(150,150,[1,1,1,1],"uvtemplate.jpg")
-
+	var fontRenderer = new FontRenderer(engine,"font.png");
+	var spriteAt = null;
+	var i = 0;
 	//Interesting stuff
 	render_loop = function() {
 		engine.setView();
 		engine.clear();
-		engine.drawSprite(megamanSprite,100,100,45);
+		if( fontRenderer.loaded != null ) {
+			if(spriteAt == null) {
+				spriteAt = fontRenderer.getSprite(engine,"@");
+			}
+			else {
+				engine.drawSprite(spriteAt,0,0);	
+			}
+		}
+		i++;
 	}
 	
 	engine.start(render_loop,60);

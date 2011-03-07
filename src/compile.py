@@ -11,6 +11,8 @@ fileList = [
 	"shader-vs.js",
 	"shader-fs.js",
 	"SpriteEngine.js",
+	"base64.js",
+	"canvas2image.js",
 	"FontRenderer.js",
 ]
 
