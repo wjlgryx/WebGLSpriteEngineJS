@@ -28,12 +28,7 @@
 		engine.setView();
 		engine.clear();
 		if( fontRenderer.loaded != null ) {
-			if(spriteAt == null) {
-				spriteAt = fontRenderer.getSprite(engine,"@");
-			}
-			else {
-				engine.drawSprite(spriteAt,0,0);	
-			}
+			fontRenderer.drawText("@",0,0);
 		}
 		i++;
 	}

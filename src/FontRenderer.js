@@ -1,4 +1,5 @@
 FontRenderer = function(engine,src) {
+	this.engine = engine;
 	this.font = new Image()
 	this.font_data = [];
 	this.loaded = false;
@@ -23,7 +24,7 @@ FontRenderer = function(engine,src) {
 	this.font.src = src;	
 }
 
-FontRenderer.prototype.drawText = function(ctx,s,x,y) {
+FontRenderer.prototype.drawText = function(s,x,y) {
 	if( !this.loaded ) {
 		return;
 	}
@@ -32,35 +33,46 @@ FontRenderer.prototype.drawText = function(ctx,s,x,y) {
 		var c = s.charCodeAt(i)-32;	
 		var sx = this.font_data[c*2];
 		var w = this.font_data[(c*2)+1]-sx;
-		this.renderCharacter(ctx,sx,1,w,h,x,y); //accoutn for data row
+		this.renderCharacter(sx,1,w,h,x,y); //accoutn for data row
 		x+=w;
 	}
 }
-FontRenderer.prototype.getSprite = function(ctx,s) {
+/*FontRenderer.prototype.getSprite = function(ctx,s) {
 	var canvas = document.createElement('canvas');
+	var finalWidth = 0;
+	for(var i = 0; i < s.length ; i++ ) {
+		var c = s.charCodeAt(i)-32;	
+		var sx = this.font_data[c*2];
+		var w = this.font_data[(c*2)+1]-sx;
+		finalWidth += w;
+	}
 	var h = this.font.height-1; //account for data row
-	canvas.width =0;
+	canvas.width = finalWidth;
 	canvas.height = h;
 	var ctx = canvas.getContext('2d');
+	ctx.fillStyle = "blue";
+	ctx.fillRect(0,0,finalWidth,h);
+	var dataUrl = canvas.toDataURL("image/png");
 	var x=0;
 	var y=0;
 	for(var i = 0; i < s.length ; i++ ) {
 		var c = s.charCodeAt(i)-32;	
 		var sx = this.font_data[c*2];
 		var w = this.font_data[(c*2)+1]-sx;
-		canvas.width += w;
 		ctx.drawImage(this.font,sx,1,w,h,x,y,w,h);
 		x+=w;
 	}
-	var img = new Image();
-	img.src = canvas.toDataURL();
-	return engine.createSprite(img);
-}
+	dataUrl = canvas.toDataURL("image/png");
 
-FontRenderer.prototype.renderCharacter = function(ctx,sx,sy,w,h,x,y) {
-	var sw = this.sprite[3].image.width;
-	var sh = this.sprite[3].image.height;
-	ctx.drawSprite(this.sprite,x,y,0,w/sw,h/sh,sx,w,sy,h);
+	var img = new Image();
+	img.src = dataUrl;
+	return img;
+}
+*/
+FontRenderer.prototype.renderCharacter = function(sx,sy,w,h,x,y) {
+	var sw = this.sprite.texture.image.width;
+	var sh = this.sprite.texture.image.height;
+	this.engine.drawSprite(this.sprite,x,y,0,w/sw,h/sh,sx,w,sy,h);
 }
 
 
