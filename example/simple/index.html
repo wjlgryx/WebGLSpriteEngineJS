@@ -8,24 +8,30 @@
 	//Setting up
 	var engine = new SpriteEngine();
 	engine.initialize('content_screen');
-
+	var megamanSprite = null;
+	var img = new Image();
+	img.onload = function() { 
+		megamanSprite = engine.createSprite(img); 
+	};
+	img.src = "megaman.png";
 	//Load texture
-	var megamanSprite = engine.createSprite(150,150,[1,1,1,1],"megaman.png")
-
+	var i = 0;
 	//Interesting stuff
-	var i = 0
 	render_loop = function() {
 		engine.setView();
 		engine.clear();
-		engine.reset();
+		engine.identity();
+		if( megamanSprite != null ) {	
 		engine.setTint((5+Math.sin(i/3)*50)/100.0,(50+Math.sin(i/25)*50)/100.0,(50+Math.sin(i/50)*50)/100.0);
 		engine.setAlpha((50+Math.sin(i/10)*50)/100.0);
 		engine.move(engine.width()/2.0-75, engine.height()/2.0-75);
 		engine.move(75,75);
 		engine.rotate(45+i);
 		engine.move(-75.0, -75.0);
-    		engine.drawSprite(megamanSprite);
-		i++;   
+
+			engine.renderSprite(megamanSprite);	
+		}
+		i++;
 	}
 	
 	engine.start(render_loop,60);
