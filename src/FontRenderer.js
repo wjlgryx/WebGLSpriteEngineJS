@@ -5,7 +5,7 @@ FontRenderer = function(engine,src) {
 	this.sprite = null;
 	var me = this;
 	this.font.onload = function() {
-		me.sprite = engine.createSprite(150,150,[1,1,1,1],src);
+		me.sprite = engine.createSprite(me.font);
 		var canvas = document.createElement('canvas');
 		canvas.width = me.font.width;
 		canvas.height = me.font.height;
@@ -52,7 +52,9 @@ FontRenderer.prototype.getSprite = function(ctx,s) {
 		ctx.drawImage(this.font,sx,1,w,h,x,y,w,h);
 		x+=w;
 	}
-	return engine.createSprite(canvas.width,canvas.height,canvas.toDataURL());
+	var img = new Image();
+	img.src = canvas.toDataURL();
+	return engine.createSprite(img);
 }
 
 FontRenderer.prototype.renderCharacter = function(ctx,sx,sy,w,h,x,y) {

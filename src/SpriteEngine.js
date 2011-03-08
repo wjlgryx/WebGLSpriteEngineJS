@@ -96,11 +96,11 @@ SpriteEngine.prototype.renderSprite = function(sprite,src_x,src_y,src_width,src_
     this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, positionBuffer.numItems);
 }
 
-SpriteEngine.prototype.createSprite = function(width,height,url) {
+SpriteEngine.prototype.createSprite = function(img) {
     var vertices = [
-         width, height, 0.0,
-         0, height, 0.0,
-         width, 0, 0.0,
+         img.width, img.height, 0.0,
+         0, img.height, 0.0,
+         img.width, 0, 0.0,
          0, 0,  0.0
     ];
     var vertexPositionBuffer = this.createBuffer(vertices,3,4);
@@ -121,7 +121,7 @@ SpriteEngine.prototype.createSprite = function(width,height,url) {
     ];
     var textureCoordBuffer = this.createBuffer(coords,2,4);
     
-    return [vertexPositionBuffer, vertexColorBuffer, textureCoordBuffer, this.loadTexture(url)];
+    return [vertexPositionBuffer, vertexColorBuffer, textureCoordBuffer, this.loadTexture(img)];
 }
 
 SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y,start_s,end_s,start_t,end_t) {
