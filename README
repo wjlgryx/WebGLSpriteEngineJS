@@ -18,8 +18,11 @@ To compile the javascript library correctly, you'll need some dependencies:
 Once you have these, from commandline in the root directory run ./setup.sh (for osx/linux) or setup.bat (for windows)
 
 TESTING
-You can run a temporary server in any of the example directories by running ./run_server.sh
+You can run a temporary server in any of the example directory by running ./run_server.sh after you have compiled
 
 TODO LIST:
-- ask to get listed on learningwebgl.com
-
+- improve how inputs work
+- figure out a good solution for preloading images
+- experiment with ways to do glow and blur
+- animated spritesheets
+- add layering
