@@ -11,6 +11,40 @@ Engine.prototype.initialize = function(id) {
     this.initShaders();
     this.initBuffers();
     this.initTextures();
+    var me = this;
+    canvas.addEventListener('mousedown', function(evt) {
+	evt.preventDefault();
+	curX = evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft-canvas.offsetLeft; 
+    	curY = evt.clientY + document.body.scrollTop + document.documentElement.scrollTop-canvas.offsetTop; 
+	if(me.mouseDown != undefined) { me.mouseDown(curX,curY); }
+    }, false);
+    canvas.addEventListener('mouseup', function(evt) {
+	evt.preventDefault();
+	curX = evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft-canvas.offsetLeft; 
+  	curY = evt.clientY + document.body.scrollTop + document.documentElement.scrollTop-canvas.offsetTop; 
+	if(me.mouseUp != undefined) { me.mouseUp(curX,curY); }
+    }, false);
+    canvas.addEventListener('mousemove', function(evt) {
+	evt.preventDefault();
+	curX = evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft-canvas.offsetLeft; 
+  	curY = evt.clientY + document.body.scrollTop + document.documentElement.scrollTop-canvas.offsetTop; 
+	if(me.mouseMove != undefined) { me.mouseMove(curX,curY); }
+    }, false);
+    canvas.setAttribute('tabindex', '10000'); //need to be focusable to receive key events
+    window.addEventListener('keydown', function(evt) {
+	evt.preventDefault();
+	var shiftPressed=evt.shiftKey;
+   	var altPressed  =evt.altKey;
+   	var ctrlPressed =evt.ctrlKey;
+	if(me.keyDown != undefined) { me.keyDown(evt.keyCode,shiftPressed,altPressed,ctrlPressed); }
+    }, false);	
+    window.addEventListener('keyup', function(evt) {
+	evt.preventDefault();
+	var shiftPressed=evt.shiftKey;
+   	var altPressed  =evt.altKey;
+   	var ctrlPressed =evt.ctrlKey;
+	if(me.keyUp != undefined) { me.keyUp(evt.keyCode,shiftPressed,altPressed,ctrlPressed); }
+    }, false);	
 }
 
 Engine.prototype.initSettings = function() {

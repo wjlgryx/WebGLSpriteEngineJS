@@ -1,0 +1,30 @@
+<html>
+<head>
+	<script type="text/javascript" src="js/SpriteEngine-min.js"></script>
+</head>
+<body>
+<canvas id="content_screen" style="border: none;" width="800" height="600"></canvas>
+<script>
+	//Setting up
+	var engine = new SpriteEngine();
+	engine.initialize('content_screen');
+
+	//Load texture
+	//THIS FOUND MAP IS GENERATED AT http://fontmap.nodester.com
+	var fontRenderer = new FontRenderer(engine,"img/font.png");
+	var spriteAt = null;
+	var i = 0;
+	//Interesting stuff
+	render_loop = function() {
+		engine.setView();
+		engine.clear();
+		if( fontRenderer.loaded != null ) {
+			fontRenderer.drawText("Hello World",0,0);
+		}
+		i++;
+	}
+	
+	engine.start(render_loop,60);
+</script>
+</body>
+</html>

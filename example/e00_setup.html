@@ -1,0 +1,21 @@
+<html> 
+<head> 
+	<script type="text/javascript" src="js/SpriteEngine-min.js"></script> 
+</head> 
+<body> 
+<canvas id="content_screen" style="border: none;" width="800" height="600"></canvas> 
+<script> 
+	//Setting up
+	var engine = new SpriteEngine();
+	engine.initialize('content_screen');
+	
+	//Interesting stuff
+	render_loop = function() {
+		engine.setView();
+		engine.clear();
+	}
+	
+	engine.start(render_loop,60);
+</script> 
+</body> 
+</html> 

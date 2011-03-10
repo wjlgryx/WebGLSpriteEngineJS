@@ -1,0 +1,37 @@
+<html> 
+<head> 
+	<script type="text/javascript" src="js/SpriteEngine-min.js"></script> 
+</head> 
+<body> 
+<canvas id="content_screen" style="border: none;" width="800" height="600"></canvas> 
+<script> 
+	//Setting up
+	var engine = new SpriteEngine();
+	engine.initialize('content_screen');
+
+	//Load a texture
+	var megamanSprite = null;
+
+	//Asynchronously load an image
+	var img = new Image();
+	img.onload = function() { 
+		megamanSprite = engine.createSprite(img); 
+	};
+	img.src = "img/megaman.png";
+
+	//Interesting stuff
+	render_loop = function() {
+		engine.setView();
+		engine.clear();
+		
+		//wait til sprite is loaded
+		if( megamanSprite != null ) {
+			//draw sprite 
+			engine.drawSprite(megamanSprite,0,0);
+		}
+	}
+	
+	engine.start(render_loop,60);
+</script> 
+</body> 
+</html> 
