@@ -21,5 +21,6 @@ TESTING
 You can run a temporary server in any of the example directories by running ./run_server.sh
 
 TODO LIST:
-- ask to get listed on learningwebgl.com
+- improve how inputs work
+- figure out a good solution for preloading images
 
