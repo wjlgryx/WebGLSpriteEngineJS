@@ -12,8 +12,7 @@
 	//Load texture
 	//THIS FOUND MAP IS GENERATED AT http://fontmap.nodester.com
 	var fontRenderer = new FontRenderer(engine,"img/font.png");
-	var spriteAt = null;
-	var i = 0;
+	
 	//Interesting stuff
 	render_loop = function() {
 		engine.setView();
@@ -21,7 +20,6 @@
 		if( fontRenderer.loaded != null ) {
 			fontRenderer.drawText("Hello World",0,0);
 		}
-		i++;
 	}
 	
 	engine.start(render_loop,60);
