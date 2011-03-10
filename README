@@ -23,4 +23,5 @@ You can run a temporary server in any of the example directory by running ./run_
 TODO LIST:
 - improve how inputs work
 - figure out a good solution for preloading images
+- experiment with ways to do glow and blur
 
