@@ -1,3 +1,9 @@
+FEATURES
+- Single javascript file to add WebGL sprite engine to any page
+- Tinting of sprites
+- Rendering text from font maps ( uses font maps made from http://fontmap.nodester.com/index.html)
+- Built in keyboard/mouse support to reduce boiler plate code
+
 GETTING STARTED
 
 1) Download the compiled javascript library at: 
