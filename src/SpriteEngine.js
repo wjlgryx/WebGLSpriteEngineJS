@@ -1,6 +1,7 @@
 SpriteEngine = function() {
 	this.shaderProgram = null;
 	this.vMulColor = [1,1,1,1];
+	this.identity();
 }
 
 SpriteEngine.prototype = new Engine();
@@ -134,14 +135,29 @@ SpriteEngine.prototype.drawSprite = function(sprite,x,y,angle,scale_x,scale_y,st
 	if( end_s == undefined ) end_s = w;
 	if( start_t == undefined ) start_t = 0;
 	if( end_t == undefined ) end_t = h;
-	engine.identity();
-	engine.move(x, y);
-	if( angle != 0 ) {
-		engine.rotate(angle);
-	}
-	if( scale_x != 1 || scale_y != 1) {
-		engine.scale(scale_x,scale_y);
-	}
+	
+	var a = Math.rad(angle);	
+
+	this.mvMatrix.elements[0][0] = scale_x*Math.cos(a);
+	this.mvMatrix.elements[1][0] = Math.sin(a);
+	this.mvMatrix.elements[2][0] = 0;
+	this.mvMatrix.elements[3][0] = 0;
+
+	this.mvMatrix.elements[0][1] = -Math.sin(a);
+	this.mvMatrix.elements[1][1] = scale_y*Math.cos(a);
+	this.mvMatrix.elements[2][1] = 0;
+	this.mvMatrix.elements[3][1] = 0;
+
+	this.mvMatrix.elements[0][2] = 0;
+	this.mvMatrix.elements[1][2] = 0;
+	this.mvMatrix.elements[2][2] = 1;
+	this.mvMatrix.elements[3][2] = 0;
+
+	this.mvMatrix.elements[0][3] = x;
+	this.mvMatrix.elements[1][3] = y;
+	this.mvMatrix.elements[2][3] = 0;
+	this.mvMatrix.elements[3][3] = 1;
+
     	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
 }
 
@@ -155,14 +171,29 @@ SpriteEngine.prototype.drawSpriteCentered = function(sprite,x,y,angle,scale_x,sc
 	if( end_s == undefined ) end_s = w;
 	if( start_t == undefined ) start_t = 0;
 	if( end_t == undefined ) end_t = h;
-	engine.identity();
-	engine.move(x-w/2, y-h/2);
-	if( angle != 0 ) {
-		engine.rotate(angle);
-	}
-	if( scale_x != 1 || scale_y != 1) {
-		engine.scale(scale_x,scale_y);
-	}
+	
+	var a = Math.rad(angle);	
+
+	this.mvMatrix.elements[0][0] = scale_x*Math.cos(a);
+	this.mvMatrix.elements[1][0] = Math.sin(a);
+	this.mvMatrix.elements[2][0] = 0;
+	this.mvMatrix.elements[3][0] = 0;
+
+	this.mvMatrix.elements[0][1] = -Math.sin(a);
+	this.mvMatrix.elements[1][1] = scale_y*Math.cos(a);
+	this.mvMatrix.elements[2][1] = 0;
+	this.mvMatrix.elements[3][1] = 0;
+
+	this.mvMatrix.elements[0][2] = 0;
+	this.mvMatrix.elements[1][2] = 0;
+	this.mvMatrix.elements[2][2] = 1;
+	this.mvMatrix.elements[3][2] = 0;
+
+	this.mvMatrix.elements[0][3] = x-w/2;
+	this.mvMatrix.elements[1][3] = y-h/2;
+	this.mvMatrix.elements[2][3] = 0;
+	this.mvMatrix.elements[3][3] = 1;
+
     	engine.renderSprite(sprite,start_s,start_t,end_s,end_t);
 }
 
