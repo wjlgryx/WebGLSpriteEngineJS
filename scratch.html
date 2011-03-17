@@ -8,8 +8,6 @@
 	<script type="text/javascript" src="src/shader-vs.js"></script>
 	<script type="text/javascript" src="src/shader-fs.js"></script>
 	<script type="text/javascript" src="src/SpriteEngine.js"></script>
-	<script type="text/javascript" src="src/base64.js"></script>
-	<script type="text/javascript" src="src/canvas2image.js"></script>
 	<script type="text/javascript" src="src/FontRenderer.js"></script>
 </head>
 <body>
@@ -20,7 +18,7 @@
 	engine.initialize('content_screen');
 
 	//Load texture
-	var fontRenderer = new FontRenderer(engine,"font.png");
+	var fontRenderer = new FontRenderer(engine,"examples/img/font.png");
 	var spriteAt = null;
 	var i = 0;
 	//Interesting stuff
@@ -28,6 +26,8 @@
 		engine.setView();
 		engine.clear();
 		if( fontRenderer.loaded != null ) {
+			var dim = fontRenderer.getStringDimensions('@');
+			alert('width: '+dim.width+' height:'+dim.height);
 			fontRenderer.drawText("@",0,0);
 		}
 		i++;
